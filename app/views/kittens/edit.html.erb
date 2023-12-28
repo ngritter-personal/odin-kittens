@@ -1,0 +1,7 @@
+<!-- app/views/kittens/edit.html.erb -->
+
+<h1>Edit Kitten</h1>
+<%= render 'form' %>
+
+<%= link_to 'Show', @kitten %> |
+<%= link_to 'Delete', @kitten, method: :delete, data: { confirm: 'Are you sure?' } %>
