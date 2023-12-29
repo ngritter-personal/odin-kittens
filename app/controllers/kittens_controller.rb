@@ -6,10 +6,19 @@ class KittensController < ApplicationController
     # Display a list of all kittens
     def index
         @kittens = Kitten.all 
+
+        respond_to do |format|
+            format.html #Render the HTML view as usual
+            format.json { render json: { kittens: @kittens } }
+        end
     end
 
     # Display details for a specific kitten
     def show
+        respond_to do |format|
+            format.html # Render the HTML view as usual
+            format.json { render json: { kitten: @kitten } }
+          end
     end
 
     # Render a form for creating a new kitten
