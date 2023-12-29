@@ -22,8 +22,10 @@ class KittensController < ApplicationController
         @kitten = Kitten.new(kitten_params)
 
         if @kitten.save
-            redirect_to @kitten, notice: 'Kitten was successfully created.'
+            flash[:success] = 'Kitten was successfully created.'
+            redirect_to @kitten
         else
+            flash[:error] = 'Error creating kitten. Please check the form.'
             render :new
         end
     end
@@ -35,9 +37,11 @@ class KittensController < ApplicationController
     # Update a specific kitten based on the form submission
     def update
         if @kitten.update(kitten_params)
-            redirect_to @kitten, notice: 'Kitten was successfully updated.'
+            flash[:success] = 'Kitten was successfully updated.'
+            redirect_to @kitten
         else
             # If the update fails, render the edit form again
+            flash[:error] = 'Error updating kitten. Please check the form.'
             render :edit
         end
     end
@@ -45,6 +49,7 @@ class KittensController < ApplicationController
     # Delete a specific kitten
     def destroy
         @kitten.destroy
+        flash[:success] = 'Kitten was successfully destroyed.'
         redirect_to root_path
     end
 
